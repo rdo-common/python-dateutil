@@ -1,3 +1,6 @@
+%if 0%{?fedora}
+%global with_python3 1
+%endif
 %global modname dateutil
 
 Name:           python-%{modname}
@@ -35,6 +38,7 @@ module available in Python 2.3+.
 
 This is the version for Python 2.
 
+%if 0%{?with_python3}
 %package -n python3-%{modname}
 Summary:        Powerful extensions to the standard datetime module
 %{?python_provide:%python_provide python3-%{modname}}
@@ -49,6 +53,7 @@ The dateutil module provides powerful extensions to the standard datetime
 module available in Python 2.3+.
 
 This is the version for Python 3.
+%endif
 
 %package doc
 Summary: API documentation for python-dateutil
@@ -62,16 +67,22 @@ mv NEWS.new NEWS
 
 %build
 %py2_build
+%if 0%{?with_python3}
 %py3_build
+%endif
 make -C docs html
 
 %install
 %py2_install
+%if 0%{?with_python3}
 %py3_install
+%endif
 
 %check
 %{__python2} setup.py test
+%if 0%{?with_python3}
 %{__python3} setup.py test
+%endif
 
 %files -n python2-%{modname}
 %license LICENSE
@@ -79,11 +90,13 @@ make -C docs html
 %{python2_sitelib}/%{modname}/
 %{python2_sitelib}/*.egg-info
 
+%if 0%{?with_python3}
 %files -n python3-%{modname}
 %license LICENSE
 %doc NEWS README.rst
 %{python3_sitelib}/%{modname}/
 %{python3_sitelib}/*.egg-info
+%endif
 
 %files doc
 %license LICENSE
