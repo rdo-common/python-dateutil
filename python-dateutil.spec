@@ -1,3 +1,6 @@
+%if 0%{?fedora}
+%global with_python3 1
+%endif
 %global modname dateutil
 
 Name:           python-%{modname}
@@ -11,7 +14,6 @@ URL:            https://github.com/dateutil/dateutil
 Source:         %{pypi_source}
 
 BuildArch:      noarch
-BuildRequires:  python3-sphinx
 
 %global _description \
 The dateutil module provides powerful extensions to the standard datetime\
@@ -28,12 +30,14 @@ BuildRequires:  python2-pytest
 BuildRequires:  python2-six
 BuildRequires:  python2-setuptools
 BuildRequires:  python2-setuptools_scm
+BuildRequires:  python2-sphinx
 Requires:       tzdata
 Requires:       python2-six
 %{?python_provide:%python_provide python2-%{modname}}
 
 %description -n python2-%{modname}  %_description
 
+%if 0%{?with_python3}
 %package -n python3-%{modname}
 Summary:        %summary
 BuildRequires:  python3-devel
@@ -43,11 +47,14 @@ BuildRequires:  python3-pytest
 BuildRequires:  python3-six
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
+BuildRequires:  python3-sphinx
 Requires:       tzdata
 Requires:       python3-six
 %{?python_provide:%python_provide python3-%{modname}}
 
 %description -n python3-%{modname}  %_description
+
+%endif
 
 %package doc
 Summary: API documentation for python-dateutil
@@ -61,16 +68,26 @@ mv NEWS.new NEWS
 
 %build
 %py2_build
+%if 0%{?with_python3}
 %py3_build
+%endif
 make -C docs html
 
 %install
 %py2_install
+%if 0%{?with_python3}
 %py3_install
+%endif
 
 #%%check
 #%%{__python2} -m pytest
 #%%{__python3} -m pytest
+
+%check
+%{__python2} setup.py test
+%if 0%{?with_python3}
+%{__python3} setup.py test
+%endif
 
 %files -n python2-%{modname}
 %license LICENSE
@@ -78,11 +95,13 @@ make -C docs html
 %{python2_sitelib}/%{modname}/
 %{python2_sitelib}/*.egg-info
 
+%if 0%{?with_python3}
 %files -n python3-%{modname}
 %license LICENSE
 %doc NEWS README.rst
 %{python3_sitelib}/%{modname}/
 %{python3_sitelib}/*.egg-info
+%endif
 
 %files doc
 %license LICENSE
