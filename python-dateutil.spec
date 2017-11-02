@@ -1,8 +1,8 @@
 %global modname dateutil
 
 Name:           python-%{modname}
-Version:        2.6.0
-Release:        4%{?dist}
+Version:        2.6.1
+Release:        1%{?dist}
 Epoch:          1
 Summary:        Powerful extensions to the standard datetime module
 
@@ -90,6 +90,9 @@ make -C docs html
 %doc docs/_build/html
 
 %changelog
+* Thu Nov  2 2017 Haïkel Guémar <hguemar@fedoraproject.org> - 1:2.6.1-1
+- Upstream 2.6.1
+
 * Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1:2.6.0-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
