@@ -2,7 +2,7 @@
 
 Name:           python-%{modname}
 Version:        2.6.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        Powerful extensions to the standard datetime module
 
@@ -12,7 +12,7 @@ URL:            https://github.com/dateutil/dateutil
 Source0:        https://github.com/dateutil/dateutil/archive/%{version}/%{modname}-%{version}.tar.gz
 
 BuildArch:      noarch
-BuildRequires:  python-sphinx
+BuildRequires:  python2-sphinx
 
 %description
 The dateutil module provides powerful extensions to the standard datetime
@@ -90,6 +90,10 @@ make -C docs html
 %doc docs/_build/html
 
 %changelog
+* Mon Dec 11 2017 Iryna Shcherbina <ishcherb@redhat.com> - 1:2.6.1-2
+- Fix ambiguous Python 2 dependency declarations
+  (See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3)
+
 * Thu Nov  2 2017 Haïkel Guémar <hguemar@fedoraproject.org> - 1:2.6.1-1
 - Upstream 2.6.1
 
