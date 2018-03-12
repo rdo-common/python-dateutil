@@ -6,7 +6,6 @@ Release:        3%{?dist}
 Epoch:          1
 Summary:        Powerful extensions to the standard datetime module
 
-Group:          Development/Languages
 License:        Python
 URL:            https://github.com/dateutil/dateutil
 Source0:        https://github.com/dateutil/dateutil/archive/%{version}/%{modname}-%{version}.tar.gz
@@ -14,41 +13,33 @@ Source0:        https://github.com/dateutil/dateutil/archive/%{version}/%{modnam
 BuildArch:      noarch
 BuildRequires:  python2-sphinx
 
-%description
-The dateutil module provides powerful extensions to the standard datetime
-module available in Python 2.3+.
+%global _description \
+The dateutil module provides powerful extensions to the standard datetime\
+module available in Python.
 
-This is the version for Python 2.
+%description %_description
 
 %package -n python2-%{modname}
-Summary:        Powerful extensions to the standard datetime module
-%{?python_provide:%python_provide python2-%{modname}}
+Summary:        %summary
 BuildRequires:  python2-devel
 BuildRequires:  python2-six
 BuildRequires:  python2-setuptools
 Requires:       tzdata
 Requires:       python2-six
+%{?python_provide:%python_provide python2-%{modname}}
 
-%description -n python2-%{modname}
-The dateutil module provides powerful extensions to the standard datetime
-module available in Python 2.3+.
-
-This is the version for Python 2.
+%description -n python2-%{modname}  %_description
 
 %package -n python3-%{modname}
-Summary:        Powerful extensions to the standard datetime module
-%{?python_provide:%python_provide python3-%{modname}}
+Summary:        %summary
 BuildRequires:  python3-devel
 BuildRequires:  python3-six
 BuildRequires:  python3-setuptools
 Requires:       tzdata
 Requires:       python3-six
+%{?python_provide:%python_provide python3-%{modname}}
 
-%description -n python3-dateutil
-The dateutil module provides powerful extensions to the standard datetime
-module available in Python 2.3+.
-
-This is the version for Python 3.
+%description -n python3-%{modname}  %_description
 
 %package doc
 Summary: API documentation for python-dateutil
