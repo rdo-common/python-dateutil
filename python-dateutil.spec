@@ -1,17 +1,17 @@
 %global modname dateutil
 
 Name:           python-%{modname}
-Version:        2.6.1
-Release:        3%{?dist}
+Version:        2.7.0
+Release:        1%{?dist}
 Epoch:          1
 Summary:        Powerful extensions to the standard datetime module
 
 License:        BSD
 URL:            https://github.com/dateutil/dateutil
-Source0:        https://github.com/dateutil/dateutil/archive/%{version}/%{modname}-%{version}.tar.gz
+Source0:	https://pypi.python.org/packages/e5/1d/64a3b1c30842ecf0518af93ed123e5064559e588aebdcae0a59831dee642/python-dateutil-2.7.0.tar.gz
 
 BuildArch:      noarch
-BuildRequires:  python2-sphinx
+BuildRequires:  python3-sphinx
 
 %global _description \
 The dateutil module provides powerful extensions to the standard datetime\
@@ -24,6 +24,7 @@ Summary:        %summary
 BuildRequires:  python2-devel
 BuildRequires:  python2-six
 BuildRequires:  python2-setuptools
+BuildRequires:  python2-setuptools_scm
 Requires:       tzdata
 Requires:       python2-six
 %{?python_provide:%python_provide python2-%{modname}}
@@ -35,6 +36,7 @@ Summary:        %summary
 BuildRequires:  python3-devel
 BuildRequires:  python3-six
 BuildRequires:  python3-setuptools
+BuildRequires:  python3-setuptools_scm
 Requires:       tzdata
 Requires:       python3-six
 %{?python_provide:%python_provide python3-%{modname}}
@@ -47,7 +49,7 @@ Summary: API documentation for python-dateutil
 This package contains %{summary}.
 
 %prep
-%autosetup -p0 -n %{modname}-%{version}
+%autosetup
 iconv --from=ISO-8859-1 --to=UTF-8 NEWS > NEWS.new
 mv NEWS.new NEWS
 
@@ -81,6 +83,11 @@ make -C docs html
 %doc docs/_build/html
 
 %changelog
+* Mon Mar 12 2018 Zbigniew Jędrzejewski-Szmek <zbyszek@in.waw.pl> - 1:2.7.0-1
+- Fix license tag (should be BSD)
+- Update to latest version (#1469314)
+  See https://github.com/dateutil/dateutil/blob/master/NEWS for details.
+
 * Fri Feb 09 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1:2.6.1-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
