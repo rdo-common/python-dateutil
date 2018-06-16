@@ -2,7 +2,7 @@
 
 Name:           python-%{modname}
 Version:        2.7.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        Powerful extensions to the standard datetime module
 
@@ -83,6 +83,9 @@ make -C docs html
 %doc docs/_build/html
 
 %changelog
+* Sat Jun 16 2018 Miro Hrončok <mhroncok@redhat.com> - 1:2.7.0-2
+- Rebuilt for Python 3.7
+
 * Mon Mar 12 2018 Zbigniew Jędrzejewski-Szmek <zbyszek@in.waw.pl> - 1:2.7.0-1
 - Fix license tag (should be BSD)
 - Update to latest version (#1469314)
