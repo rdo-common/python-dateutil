@@ -1,14 +1,14 @@
 %global modname dateutil
 
 Name:           python-%{modname}
-Version:        2.7.0
-Release:        3%{?dist}
+Version:        2.7.3
+Release:        1%{?dist}
 Epoch:          1
 Summary:        Powerful extensions to the standard datetime module
 
 License:        BSD
 URL:            https://github.com/dateutil/dateutil
-Source0:	https://pypi.python.org/packages/e5/1d/64a3b1c30842ecf0518af93ed123e5064559e588aebdcae0a59831dee642/python-dateutil-2.7.0.tar.gz
+Source:         %{pypi_source}
 
 BuildArch:      noarch
 BuildRequires:  python3-sphinx
@@ -83,6 +83,9 @@ make -C docs html
 %doc docs/_build/html
 
 %changelog
+* Sat Sep 08 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 1:2.7.3-1
+- Update to 2.7.3
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1:2.7.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
