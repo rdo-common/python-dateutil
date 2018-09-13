@@ -22,6 +22,9 @@ module available in Python.
 %package -n python2-%{modname}
 Summary:        %summary
 BuildRequires:  python2-devel
+BuildRequires:  python2-freezegun
+BuildRequires:  python2-hypothesis
+BuildRequires:  python2-pytest
 BuildRequires:  python2-six
 BuildRequires:  python2-setuptools
 BuildRequires:  python2-setuptools_scm
@@ -34,6 +37,9 @@ Requires:       python2-six
 %package -n python3-%{modname}
 Summary:        %summary
 BuildRequires:  python3-devel
+BuildRequires:  python3-freezegun
+BuildRequires:  python3-hypothesis
+BuildRequires:  python3-pytest
 BuildRequires:  python3-six
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-setuptools_scm
@@ -63,8 +69,8 @@ make -C docs html
 %py3_install
 
 %check
-%{__python2} setup.py test
-%{__python3} setup.py test
+%{__python2} -m pytest
+%{__python3} -m pytest
 
 %files -n python2-%{modname}
 %license LICENSE
