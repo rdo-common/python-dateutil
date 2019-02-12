@@ -11,7 +11,7 @@ Summary:        Powerful extensions to the standard datetime module
 
 License:        BSD
 URL:            https://github.com/dateutil/dateutil
-Source:         %{pypi_source}
+Source:         https://files.pythonhosted.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
 
 BuildArch:      noarch
 
@@ -24,7 +24,7 @@ module available in Python.
 %package -n python2-%{modname}
 Summary:        %summary
 BuildRequires:  python2-devel
-BuildRequires:  python2-freezegun
+BuildRequires:  python-freezegun
 BuildRequires:  python2-hypothesis
 BuildRequires:  python2-pytest
 BuildRequires:  python2-six
@@ -82,12 +82,6 @@ make -C docs html
 #%%check
 #%%{__python2} -m pytest
 #%%{__python3} -m pytest
-
-%check
-%{__python2} setup.py test
-%if 0%{?with_python3}
-%{__python3} setup.py test
-%endif
 
 %files -n python2-%{modname}
 %license LICENSE
